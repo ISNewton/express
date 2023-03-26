@@ -3,7 +3,7 @@ const app = require('express')()
 const adminRoutes = require('./admin')
 const shopRoutes = require('./shop')
 
-app.use(adminRoutes)
+app.use('/admin' , adminRoutes)
 app.use(shopRoutes)
 
 app.use((req , res , next) => {
