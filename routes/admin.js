@@ -4,6 +4,8 @@ const path = require('path')
 
 const router = app.Router()
 
+const products = []
+
 router.get('/products',(req , res , next) => {
 
     res.sendFile(path.join(__dirname , '../' , 'views' , 'admin' , 'products.html'))
@@ -12,5 +14,10 @@ router.get('/products',(req , res , next) => {
 router.get('/add-product',(req , res , next) => {
     res.sendFile(path.join(__dirname , '../' , 'views' , 'admin' , 'add-product.html'))
 })
+router.post('/add-product',(req , res , next) => {
+    products.push(req.body.title)
+    res.redirect('/')
+})
 
-module.exports = router
+exports.adminRoutes = router
+exports.products = products

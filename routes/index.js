@@ -2,7 +2,7 @@ const app = require('express')()
 
 const path = require('path')
 
-const adminRoutes = require('./admin')
+const {adminRoutes} = require('./admin')
 const shopRoutes = require('./shop')
 
 app.use('/admin' , adminRoutes)
