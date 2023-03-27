@@ -13,7 +13,7 @@ html(lang="en")
             nav
             ul
                 li
-                    a.active(href="/admin/products") Products
+                    a(href="/admin/products" ,class=(path == '/admin/products' &&  'active')) Products
                 li 
                     a(href="/admin/add-product") Add Product
                 

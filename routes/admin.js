@@ -8,16 +8,18 @@ const products = []
 
 
 router.get('/products',(req , res , next) => {
-    console.log(products)
-    products.slice()
     res.render('admin/products' , {
-        products: products
+        products: products,
+        path: '/admin/products'
     })
     // res.sendFile(path.join(__dirname , '../' , 'views' , 'admin' , 'products.html'))
 })
 
 router.get('/add-product',(req , res , next) => {
-    res.render('admin/add-product')
+    res.render('admin/add-product',{
+        path: '/admin/add-product'
+
+    })
     // res.sendFile(path.join(__dirname , '../' , 'views' , 'admin' , 'add-product.html'))
 })
 router.post('/add-product',(req , res , next) => {
