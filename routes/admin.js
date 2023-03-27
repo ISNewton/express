@@ -17,7 +17,8 @@ router.get('/products',(req , res , next) => {
 })
 
 router.get('/add-product',(req , res , next) => {
-    res.sendFile(path.join(__dirname , '../' , 'views' , 'admin' , 'add-product.html'))
+    res.render('admin/add-product')
+    // res.sendFile(path.join(__dirname , '../' , 'views' , 'admin' , 'add-product.html'))
 })
 router.post('/add-product',(req , res , next) => {
     products.push(req.body.name)
