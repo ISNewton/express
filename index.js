@@ -9,7 +9,7 @@ const bodyParser = require('body-parser')
 const routes = require('./routes/index')
 
 
-app.set('view engine', 'pug')
+app.set('view engine', 'ejs')
 
 app.use(express.static(path.join(__dirname,'public')))
 
