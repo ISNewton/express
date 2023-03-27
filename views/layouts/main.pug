@@ -15,10 +15,10 @@ html(lang="en")
                 li
                     a(href="/admin/products" ,class=(path == '/admin/products' &&  'active')) Products
                 li 
-                    a(href="/admin/add-product") Add Product
+                    a(href="/admin/add-product",class=(path == '/admin/add-product' &&  'active')) Add Product
                 
                 li 
-                    a(href="/") Shop
+                    a(href="/" ,class=(path == '/' &&  'active')) Shop
         main
             block content
             
