@@ -1,29 +1,10 @@
-doctype html
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(http-equiv="X-UA-Compatible", content="IE=edge")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title Admin | Add product
-    body 
-        header 
-            h1 Admin | Add product
-            nav
-            ul
-                li
-                    a(href="/admin/products") Products
-                li 
-                    a(href="/admin/add-product") Add Product
-                
-                li 
-                    a(href="/") Shop
-        main
-            h2 Add product
-            form(action="/admin/add-product" , method="POST") 
+extends ../layouts/main.pug 
+block title 
+    span Add product
+    
+block content 
+     form(action="/admin/add-product" , method="POST") 
                 div 
                     label Product name
                     input(type="text",name="name")
                 button(type="submit") Submit 
-                
-
-            
