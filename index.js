@@ -1,5 +1,6 @@
 
-const app = require('express')()
+const express = require('express')
+const app = express()
 
 const path = require('path')
 
@@ -9,10 +10,8 @@ const routes = require('./routes/index')
 
 
 app.set('view engine', 'pug')
-// app.set('views', 
-//     path.join(__dirname, 'views'),
-//     // path.join(__dirname, 'views', 'admin')
-// );
+
+app.use(express.static(path.join(__dirname,'public')))
 
 app.use(bodyParser.urlencoded({ extended: false }))
 
