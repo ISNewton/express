@@ -4,28 +4,11 @@ const path = require('path')
 
 const router = app.Router()
 
-const products = []
+const productsController = require('../controllers/products')
 
+router.get('/products',productsController.index)
 
-router.get('/products',(req , res , next) => {
-    res.render('admin/products' , {
-        products: products,
-        path: '/admin/products'
-    })
-    // res.sendFile(path.join(__dirname , '../' , 'views' , 'admin' , 'products.html'))
-})
-
-router.get('/add-product',(req , res , next) => {
-    res.render('admin/add-product',{
-        path: '/admin/add-product'
-
-    })
-    // res.sendFile(path.join(__dirname , '../' , 'views' , 'admin' , 'add-product.html'))
-})
-router.post('/add-product',(req , res , next) => {
-    products.push(req.body.name)
-    res.redirect('/admin/products')
-})
+router.get('/add-product',productsController.create)
+router.post('/add-product',productsController.store)
 
 exports.adminRoutes = router
-exports.products = products
