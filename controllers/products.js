@@ -37,16 +37,11 @@ exports.store = (req, res, next) => {
         }
         products.push(req.body.name)
 
-        
+        fs.writeFile(productsFile , JSON.stringify(products),(err) => {
+            console.log(err);
+        })
 
     })
-
-    // products.push(req.body.name)
-
-
-    // fs.writeFile(productsFile,JSON.stringify(products),(err , data) => {
-    //     console.log('err' , err);
-    // })
 
     res.redirect('/admin/products')
 }
