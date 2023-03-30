@@ -6,17 +6,19 @@ const productsFile = path.join(__dirname, '../', 'data', 'products.json')
 exports.index = (req, res, next) => {
 
 
-    const products = []
+    let products = []
 
     fs.readFile(productsFile, (err, data) => {
         if (!err) {
-            products.push(JSON.parse(data))
+            products = JSON.parse(data)
         }
+
+        res.render('admin/products', {
+            products: products,
+            path: '/admin/products'
+        })
     });
-    res.render('admin/products', {
-        products: products,
-        path: '/admin/products'
-    })
+    
 }
 
 exports.create = (req, res, next) => {
