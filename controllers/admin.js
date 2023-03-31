@@ -30,18 +30,31 @@ exports.getProducts = (req, res, next) => {
   });
 };
 
-exports.editProduct = (req , res , next) => {
-     Product.find(req.params.id,(product) => {
+exports.editProduct = (req, res, next) => {
+  Product.find(req.params.id, (product) => {
 
-      res.render('admin/edit-product', {
-        pageTitle: 'Edit Product',
-        path: '/admin/edit-product',
-        formsCSS: true,
-        productCSS: true,
-        activeAddProduct: false,
-        product,
-      });
+    res.render('admin/edit-product', {
+      pageTitle: 'Edit Product',
+      path: '/admin/edit-product',
+      formsCSS: true,
+      productCSS: true,
+      activeAddProduct: false,
+      product,
+    });
 
-     })
+  })
+
+exports.updateProduct = (req , res , next) => {
+  const product = new Product(
+    req.body.title,
+    req.body.imageUrl,
+    req.body.imageUrl,
+    req.body.price,
+  )
+
+  product.save()
+
+  res.redirect('/')
+}
 
 }
