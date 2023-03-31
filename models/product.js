@@ -18,11 +18,15 @@ const getProductsFromFile = cb => {
 };
 
 module.exports = class Product {
-  constructor(title, imageUrl, description, price) {
+  constructor(title, imageUrl, description, price , id = null) {
     this.title = title;
     this.imageUrl = imageUrl;
     this.description = description;
     this.price = price;
+
+    if(id) {
+      this.id = id
+    }
   }
 
   save() {
@@ -45,5 +49,21 @@ module.exports = class Product {
       cb(products.find(product => true))
     })
 
+  }
+
+  update(product) {
+    getProductsFromFile((products) => {
+      const index = products.findIndex(pro => pro.id == this.id)
+
+      console.log(index);
+
+      products[index] = {
+        ...product,
+        id: this.id
+      }
+      fs.writeFile(p, JSON.stringify(products), err => {
+      });
+      
+    })
   }
 };
