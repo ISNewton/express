@@ -39,8 +39,8 @@ module.exports = class Product {
     db.execute('insert into products (title,image,price,description) values(?,?,?,?)',
       [this.title, this.imageUrl, this.price, this.description]
     )
-    .then(result => console.log(result))
-    .catch(err => console.log(err))
+      .then(result => console.log(result))
+      .catch(err => console.log(err))
   }
 
   delete() {
@@ -53,9 +53,9 @@ module.exports = class Product {
 
     // })
 
-    db.execute('delete from products where id = ?',[this.id])
-    .then(result => console.log(result))
-    .catch(err => console.log(err))
+    db.execute('delete from products where id = ?', [this.id])
+      .then(result => console.log(result))
+      .catch(err => console.log(err))
   }
 
   static fetchAll(cb) {
@@ -68,9 +68,14 @@ module.exports = class Product {
   }
 
   static find(id, cb) {
-    return getProductsFromFile((products) => {
-      cb(products.find(product => product.id == id))
-    })
+    // return getProductsFromFile((products) => {
+    //   cb(products.find(product => product.id == id))
+    // })
+
+    db.execute('select * from products where id = ? limit 1', [id])
+      .then(([products, fieldData]) => {
+        cb(products)
+      })
 
   }
 
