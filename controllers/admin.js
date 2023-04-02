@@ -41,38 +41,48 @@ exports.getProducts = (req, res, next) => {
 
 exports.editProduct = (req, res, next) => {
 
-  const product = Product.create()
-  // Product.find(req.params.id, (product) => {
+  Product.findByPk(req.params.id)
+    .then(product => {
+      res.render('admin/edit-product', {
+        pageTitle: 'Edit Product',
+        path: '/admin/edit-product',
+        formsCSS: true,
+        productCSS: true,
+        activeAddProduct: false,
+        product,
+      });
+    })
 
-  //   console.log(product);
-  //   res.render('admin/edit-product', {
-  //     pageTitle: 'Edit Product',
-  //     path: '/admin/edit-product',
-  //     formsCSS: true,
-  //     productCSS: true,
-  //     activeAddProduct: false,
-  //     product,
-  //   });
-
-  // })
 
 }
 
 
 exports.updateProduct = (req, res, next) => {
-  const product = new Product(
-    req.body.title,
-    req.body.image,
-    req.body.description,
-    req.body.price,
-    req.params.id,
-  )
+  // const product = new Product(
+  //   req.body.title,
+  //   req.body.image,
+  //   req.body.description,
+  //   req.body.price,
+  //   req.params.id,
+  // )
 
-  product.update({
+  // product.update({
+  //   title: req.body.title,
+  //   image: req.body.image,
+  //   description: req.body.description,
+  //   price: req.body.price,
+  // })
+
+  // const product = Product.findByPk(req.params.id)
+  Product.update({
     title: req.body.title,
     image: req.body.image,
     description: req.body.description,
     price: req.body.price,
+  }, {
+    where: {
+      id: req.params.id
+    }
   })
 
   res.redirect('/')
