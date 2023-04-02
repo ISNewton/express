@@ -32,14 +32,15 @@ module.exports = class Product {
   }
 
   save() {
-    if (!this.id) {
-      this.id = Math.random()
-    }
-    getProductsFromFile(products => {
-      products.push(this);
-      fs.writeFile(p, JSON.stringify(products), err => {
-      });
-    });
+    // products.push(this);
+    // fs.writeFile(p, JSON.stringify(products), err => {
+    // });
+
+    db.execute('insert into products (title,image,price,description) values(?,?,?,?)',
+      [this.title, this.imageUrl, this.price, this.description]
+    )
+    .then(result => console.log(result))
+    .catch(err => console.log(err))
   }
 
   delete() {

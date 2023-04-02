@@ -8,10 +8,6 @@ const errorController = require('./controllers/error');
 
 const app = express();
 
-// db.execute('select * from products')
-// .then((result) => console.log(result))
-// .catch((error) => console.log(error))
-
 app.use(methodOverride('_method'))
 
 app.set('view engine', 'ejs');
