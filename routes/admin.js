@@ -19,4 +19,7 @@ router.post('/products/:id/edit', adminController.updateProduct);
 // /admin/add-product => POST
 router.post('/add-product', adminController.postAddProduct);
 
+router.delete('/products/:id', adminController.postAddProduct);
+
+
 module.exports = router;

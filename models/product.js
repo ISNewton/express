@@ -40,6 +40,17 @@ module.exports = class Product {
     });
   }
 
+  delete() {
+    getProductsFromFile(products => {
+
+      const newProducts = products.filter(product => product.id != this.id)
+
+      fs.writeFile(p, JSON.stringify(newProducts), err => {
+      });
+
+    })
+  }
+
   static fetchAll(cb) {
     getProductsFromFile(cb);
   }
@@ -54,8 +65,6 @@ module.exports = class Product {
   update(product) {
     getProductsFromFile((products) => {
       const index = products.findIndex(pro => pro.id == this.id)
-
-      console.log(index);
 
       products[index] = {
         ...product,
