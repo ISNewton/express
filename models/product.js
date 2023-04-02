@@ -2,7 +2,7 @@ const Sequelize = require('sequelize')
 const sequelize = require('../util/database')
 
 
-module.exports = sequelize.define('product',{
+const Product = sequelize.define('product',{
   id: {
     type: Sequelize.BIGINT,
     allowNull: false,
@@ -14,6 +14,8 @@ module.exports = sequelize.define('product',{
   image: Sequelize.STRING,
   description: Sequelize.TEXT,
 })
+
+module.exports = Product
 
 
 
