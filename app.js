@@ -3,10 +3,14 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 var methodOverride = require('method-override')
-
+const db = require('./util/database')
 const errorController = require('./controllers/error');
 
 const app = express();
+
+// db.execute('select * from products')
+// .then((result) => console.log(result))
+// .catch((error) => console.log(error))
 
 app.use(methodOverride('_method'))
 
