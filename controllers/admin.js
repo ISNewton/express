@@ -15,8 +15,14 @@ exports.postAddProduct = (req, res, next) => {
   const image = req.body.image;
   const price = req.body.price;
   const description = req.body.description;
-  const product = new Product(title, image, description, price);
-  product.save();
+  // const product = new Product(title, image, description, price);
+  // product.save();
+  Product.create({
+    title,
+    image,
+    price,
+    description
+  })
   res.redirect('/');
 };
 
@@ -31,19 +37,21 @@ exports.getProducts = (req, res, next) => {
 };
 
 exports.editProduct = (req, res, next) => {
-  Product.find(req.params.id, (product) => {
 
-    console.log(product);
-    res.render('admin/edit-product', {
-      pageTitle: 'Edit Product',
-      path: '/admin/edit-product',
-      formsCSS: true,
-      productCSS: true,
-      activeAddProduct: false,
-      product,
-    });
+  const product = Product.create()
+  // Product.find(req.params.id, (product) => {
 
-  })
+  //   console.log(product);
+  //   res.render('admin/edit-product', {
+  //     pageTitle: 'Edit Product',
+  //     path: '/admin/edit-product',
+  //     formsCSS: true,
+  //     productCSS: true,
+  //     activeAddProduct: false,
+  //     product,
+  //   });
+
+  // })
 
 }
 
