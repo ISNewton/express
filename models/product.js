@@ -80,16 +80,27 @@ module.exports = class Product {
   }
 
   update(product) {
-    getProductsFromFile((products) => {
-      const index = products.findIndex(pro => pro.id == this.id)
+    // getProductsFromFile((products) => {
+    //   const index = products.findIndex(pro => pro.id == this.id)
 
-      products[index] = {
-        ...product,
-        id: this.id
-      }
-      fs.writeFile(p, JSON.stringify(products), err => {
-      });
+    //   products[index] = {
+    //     ...product,
+    //     id: this.id
+    //   }
+    //   fs.writeFile(p, JSON.stringify(products), err => {
+    //   });
 
-    })
+    // })
+    let fieldsAndValues = ''
+
+    for (const key in product) {
+        const element = object[key];
+        fieldsAndValues+= ` ${key} = ${element}`
+    }
+    console.log(fieldsAndValues);
+    // db.execute('select * from products where id = ? limit 1', [id])
+    // .then(([products, fieldData]) => {
+    //   cb(products)
+    // })
   }
 };
