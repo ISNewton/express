@@ -30,12 +30,10 @@ exports.getProducts = (req, res, next) => {
 
   Product.findAll()
     .then(products => {
-      Product.fetchAll(products => {
-        res.render('admin/products', {
-          prods: products,
-          pageTitle: 'Admin Products',
-          path: '/admin/products'
-        });
+      res.render('admin/products', {
+        prods: products,
+        pageTitle: 'Admin Products',
+        path: '/admin/products'
       });
     })
 
