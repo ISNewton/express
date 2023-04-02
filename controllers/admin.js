@@ -75,17 +75,6 @@ exports.updateProduct = (req, res, next) => {
 }
 
 exports.deleteProduct = (req, res, next) => {
-  // let product = Product.find(req.params.id, (product) => {
-  //   new Product(
-  //     req.body.title,
-  //     req.body.image,
-  //     req.body.description,
-  //     req.body.price,
-  //     req.params.id,
-  //   ).delete()
-  //   res.redirect('/')
-
-  // })
 
   Product.destroy({
     where: {
@@ -95,10 +84,5 @@ exports.deleteProduct = (req, res, next) => {
     res.redirect('/')
 
   })
-
-  //   res.redirect('/')
-
-
-
 
 }
