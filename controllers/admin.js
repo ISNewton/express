@@ -67,23 +67,37 @@ exports.updateProduct = (req, res, next) => {
     where: {
       id: req.params.id
     }
-  })
-
-  res.redirect('/')
-}
-
-exports.deleteProduct = (req, res, next) => {
-  let product = Product.find(req.params.id, (product) => {
-    new Product(
-      req.body.title,
-      req.body.image,
-      req.body.description,
-      req.body.price,
-      req.params.id,
-    ).delete()
+  }).then(result => {
     res.redirect('/')
 
   })
+
+}
+
+exports.deleteProduct = (req, res, next) => {
+  // let product = Product.find(req.params.id, (product) => {
+  //   new Product(
+  //     req.body.title,
+  //     req.body.image,
+  //     req.body.description,
+  //     req.body.price,
+  //     req.params.id,
+  //   ).delete()
+  //   res.redirect('/')
+
+  // })
+
+  Product.destroy({
+    where: {
+      id: req.params.id
+    }
+  }).then(result => {
+    res.redirect('/')
+
+  })
+
+  //   res.redirect('/')
+
 
 
 
