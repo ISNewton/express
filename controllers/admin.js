@@ -12,10 +12,10 @@ exports.getAddProduct = (req, res, next) => {
 
 exports.postAddProduct = (req, res, next) => {
   const title = req.body.title;
-  const imageUrl = req.body.imageUrl;
+  const image = req.body.image;
   const price = req.body.price;
   const description = req.body.description;
-  const product = new Product(title, imageUrl, description, price);
+  const product = new Product(title, image, description, price);
   product.save();
   res.redirect('/');
 };
@@ -51,7 +51,7 @@ exports.editProduct = (req, res, next) => {
 exports.updateProduct = (req, res, next) => {
   const product = new Product(
     req.body.title,
-    req.body.imageUrl,
+    req.body.image,
     req.body.description,
     req.body.price,
     req.params.id,
@@ -59,7 +59,7 @@ exports.updateProduct = (req, res, next) => {
 
   product.update({
     title: req.body.title,
-    imageUrl: req.body.imageUrl,
+    image: req.body.image,
     description: req.body.description,
     price: req.body.price,
   })
@@ -71,7 +71,7 @@ exports.deleteProduct = (req, res, next) => {
   let product = Product.find(req.params.id, (product) => {
     new Product(
       req.body.title,
-      req.body.imageUrl,
+      req.body.image,
       req.body.description,
       req.body.price,
       req.params.id,

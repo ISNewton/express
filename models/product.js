@@ -20,9 +20,9 @@ const getProductsFromFile = cb => {
 };
 
 module.exports = class Product {
-  constructor(title, imageUrl, description, price, id = null) {
+  constructor(title, image, description, price, id = null) {
     this.title = title;
-    this.imageUrl = imageUrl;
+    this.image = image;
     this.description = description;
     this.price = price;
 
@@ -37,7 +37,7 @@ module.exports = class Product {
     // });
 
     db.execute('insert into products (title,image,price,description) values(?,?,?,?)',
-      [this.title, this.imageUrl, this.price, this.description]
+      [this.title, this.image, this.price, this.description]
     )
       .then(result => console.log(result))
       .catch(err => console.log(err))
@@ -94,13 +94,19 @@ module.exports = class Product {
     let fieldsAndValues = ''
 
     for (const key in product) {
-        const element = product[key];
-        fieldsAndValues+= ` ${key} = ?,`
+      const element = product[key];
+      fieldsAndValues += ` ${key} = ?,`
+
     }
-    console.log(fieldsAndValues);
-    db.execute(`update products set ${fieldsAndValues} where id = `, [])
+
+    fieldsAndValues = fieldsAndValues.substring(0 , fieldsAndValues.length - 1)
+
+
+    // console.log(fieldsAndValues);
+    // db.execute(`update products set title = ? where id = 5`, ['title'])
+    db.execute(`update products set ${fieldsAndValues} where id = ?`, [...Object.values(product),this.id])
     .then(([products, fieldData]) => {
-      cb(products)
+      // cb(products)
     })
   }
 };
