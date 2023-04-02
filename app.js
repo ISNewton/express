@@ -2,10 +2,13 @@ const path = require('path');
 
 const express = require('express');
 const bodyParser = require('body-parser');
+var methodOverride = require('method-override')
 
 const errorController = require('./controllers/error');
 
 const app = express();
+
+app.use(methodOverride('_method'))
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');

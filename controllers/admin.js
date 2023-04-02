@@ -66,10 +66,19 @@ exports.updateProduct = (req, res, next) => {
   res.redirect('/')
 }
 
-exports.deleteProduct = (req , res , next) => {
-  const product = Product.find(req.params.id)
-  product.delete()
+exports.deleteProduct = (req, res, next) => {
+  let product = Product.find(req.params.id, (product) => {
+    new Product(
+      req.body.title,
+      req.body.imageUrl,
+      req.body.description,
+      req.body.price,
+      req.params.id,
+    ).delete()
+    res.redirect('/')
 
-  res.redirect('/')
+  })
+
+
 
 }
