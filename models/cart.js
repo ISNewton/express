@@ -28,21 +28,25 @@ module.exports = class Cart {
     static add(id) {
         getProductsFromFile(cart => {
             console.log(cart);
-            const product = cart.filter(product => product.productId == id)
-            console.log(product);
+            const product = cart.filter(product => product.id == id)
 
-            if(product) {
+            if (product.length > 0) {
+
                 cart = cart.map((product) => {
-                    if(product.id == id) {
+                    if (product.id == id) {
                         ++product.qty
                     }
                     return product
                 })
             } else {
                 cart.push({
-                    id: 
+                    id,
+                    qty: 1
                 })
             }
+            fs.writeFile(p, JSON.stringify(cart), (err) => {
+
+            })
 
 
         })
