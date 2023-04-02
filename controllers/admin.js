@@ -33,6 +33,7 @@ exports.getProducts = (req, res, next) => {
 exports.editProduct = (req, res, next) => {
   Product.find(req.params.id, (product) => {
 
+    console.log(product);
     res.render('admin/edit-product', {
       pageTitle: 'Edit Product',
       path: '/admin/edit-product',

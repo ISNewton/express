@@ -74,7 +74,7 @@ module.exports = class Product {
 
     db.execute('select * from products where id = ? limit 1', [id])
       .then(([products, fieldData]) => {
-        cb(products)
+        cb(products[0])
       })
 
   }
@@ -94,13 +94,13 @@ module.exports = class Product {
     let fieldsAndValues = ''
 
     for (const key in product) {
-        const element = object[key];
-        fieldsAndValues+= ` ${key} = ${element}`
+        const element = product[key];
+        fieldsAndValues+= ` ${key} = ?,`
     }
     console.log(fieldsAndValues);
-    // db.execute('select * from products where id = ? limit 1', [id])
-    // .then(([products, fieldData]) => {
-    //   cb(products)
-    // })
+    db.execute(`update products set ${fieldsAndValues} where id = `, [])
+    .then(([products, fieldData]) => {
+      cb(products)
+    })
   }
 };
