@@ -66,7 +66,7 @@ exports.updateProduct = (req, res, next) => {
   res.redirect('/')
 }
 
-exports.deleteProducts = (req , res , next) => {
+exports.deleteProduct = (req , res , next) => {
   const product = Product.find(req.params.id)
   product.delete()
 
