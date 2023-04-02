@@ -3,6 +3,7 @@ const path = require('path');
 const express = require('express');
 
 const adminController = require('../controllers/admin');
+const cartController = require('../controllers/cart');
 
 const router = express.Router();
 
@@ -20,6 +21,9 @@ router.post('/products/:id/edit', adminController.updateProduct);
 router.post('/add-product', adminController.postAddProduct);
 
 router.delete('/products/:id', adminController.deleteProduct);
+
+
+router.post('/cart/:id',cartController.addProduct)
 
 
 module.exports = router;
