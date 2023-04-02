@@ -58,22 +58,6 @@ exports.editProduct = (req, res, next) => {
 
 
 exports.updateProduct = (req, res, next) => {
-  // const product = new Product(
-  //   req.body.title,
-  //   req.body.image,
-  //   req.body.description,
-  //   req.body.price,
-  //   req.params.id,
-  // )
-
-  // product.update({
-  //   title: req.body.title,
-  //   image: req.body.image,
-  //   description: req.body.description,
-  //   price: req.body.price,
-  // })
-
-  // const product = Product.findByPk(req.params.id)
   Product.update({
     title: req.body.title,
     image: req.body.image,
