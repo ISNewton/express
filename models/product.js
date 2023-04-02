@@ -44,14 +44,18 @@ module.exports = class Product {
   }
 
   delete() {
-    getProductsFromFile(products => {
+    // getProductsFromFile(products => {
 
-      const newProducts = products.filter(product => product.id != this.id)
+    //   const newProducts = products.filter(product => product.id != this.id)
 
-      fs.writeFile(p, JSON.stringify(newProducts), err => {
-      });
+    //   fs.writeFile(p, JSON.stringify(newProducts), err => {
+    //   });
 
-    })
+    // })
+
+    db.execute('delete from products where id = ?',[this.id])
+    .then(result => console.log(result))
+    .catch(err => console.log(err))
   }
 
   static fetchAll(cb) {
