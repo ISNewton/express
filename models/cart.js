@@ -33,9 +33,18 @@ module.exports = class Cart {
 
             if(product) {
                 cart = cart.map((product) => {
-                    if(product.)
+                    if(product.id == id) {
+                        ++product.qty
+                    }
+                    return product
+                })
+            } else {
+                cart.push({
+                    id: 
                 })
             }
+
+
         })
     }
 }
