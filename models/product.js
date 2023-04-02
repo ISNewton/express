@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-
+const db = require('../util/database')
 
 
 const p = path.join(
@@ -20,19 +20,19 @@ const getProductsFromFile = cb => {
 };
 
 module.exports = class Product {
-  constructor(title, imageUrl, description, price , id = null) {
+  constructor(title, imageUrl, description, price, id = null) {
     this.title = title;
     this.imageUrl = imageUrl;
     this.description = description;
     this.price = price;
 
-    if(id) {
+    if (id) {
       this.id = id
     }
   }
 
   save() {
-    if(!this.id) {
+    if (!this.id) {
       this.id = Math.random()
     }
     getProductsFromFile(products => {
@@ -56,10 +56,13 @@ module.exports = class Product {
   static fetchAll(cb) {
     // getProductsFromFile(cb);
 
-    
+    db.execute('select * from products')
+      .then(([products, fieldData]) => {
+        cb(products)
+      })
   }
 
-  static find(id,cb) {
+  static find(id, cb) {
     return getProductsFromFile((products) => {
       cb(products.find(product => product.id == id))
     })
@@ -76,7 +79,7 @@ module.exports = class Product {
       }
       fs.writeFile(p, JSON.stringify(products), err => {
       });
-      
+
     })
   }
 };
